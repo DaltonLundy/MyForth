@@ -33,12 +33,10 @@ SPACE equ (64*64)
         %define latest name_%3
 %endmacro
 
-%macro DOCOL 1
+DOCOL:
 	PUSH_RET r10
 	mov r10, rax
 	NEXT
-        %1:
-%endmacro
 
 ; defword : len , string_name, label
 %macro defword 3
@@ -47,9 +45,8 @@ SPACE equ (64*64)
 	dw %1
 	dq %2
 	align 8
-	DOCOL_%3:
         %define latest name_%3
-        DOCOL %3
+        dq DOCOL
 %endmacro
 
 exit:
